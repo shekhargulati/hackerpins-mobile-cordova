@@ -41,6 +41,12 @@ var app = {
         app.loadHotStories();
     },
 
+    openStory : function(event){
+        event.preventDefault();
+        var url = $(this).attr("href");
+        window.open(url, '_blank', 'location=yes');
+    },
+
     loadHotStories: function(event){
         if(event){
             event.preventDefault();
@@ -60,6 +66,7 @@ var app = {
                         $("#stories").append(Mustache.to_html(storyTemplate,story));
                     });
                     $("#stories").listview().listview("refresh");
+                    $('.storyUrl').on('tap',app.openStory);
                     
                 },
                 error : function(XMLHttpRequest,textStatus, errorThrown) {   
@@ -88,6 +95,7 @@ var app = {
                         $("#stories").append(Mustache.to_html(storyTemplate,story));
                     });
                     $("#stories").listview().listview("refresh");
+                    $('.storyUrl').on('tap',app.openStory);
                     
                 },
                 error : function(XMLHttpRequest,textStatus, errorThrown) {   
